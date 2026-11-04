@@ -637,7 +637,8 @@ export class VimEditor extends CustomEditor {
   ): void {
     void readClipboardText()
       .then((text) => {
-        const register: VimRegister = { type: "char", text };
+        // Host text carries no linewise flag; reuse the mirror's when it is our own copy.
+        const register: VimRegister = fallback?.text === text ? fallback : { type: "char", text };
         this.pasteClipboardRegister(slot, placement, register, count);
       })
       .catch(() => {

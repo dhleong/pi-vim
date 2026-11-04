@@ -6,6 +6,17 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- `clipboard` setting (`"none"`, `"unnamed"`, `"unnamedplus"`), like Vim's
+  `'clipboard'`: unprefixed yank, delete, and change also copy to the host
+  clipboard, and unprefixed `p`/`P` paste from it.
+
+### Changed
+
+- Host clipboard paste (`"+p`, `"*p`) keeps a linewise yank linewise when the
+  clipboard still holds the text the prompt copied.
+
 ## [1.0.3] - 2026-10-27
 
 ### Fixed
