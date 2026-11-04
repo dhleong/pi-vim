@@ -21,6 +21,8 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- `"+p`/`"*p` now redraw the prompt as soon as the clipboard text is pasted,
+  instead of on the next keypress.
 - Copied Pi's editor render output before in-place mutation, honoring
   Pi 1.6's read-only render contract for extension components (upstream
   caching can now return the same array while content is unchanged).

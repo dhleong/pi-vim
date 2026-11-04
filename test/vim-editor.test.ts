@@ -2485,6 +2485,18 @@ test("clipboard paste falls back to prompt-local mirror on host read failure", a
   expect(editor.getText()).toBe("one\none\n");
 });
 
+test("clipboard paste requests a render once the host read settles", async () => {
+  setClipboardTextReaderForTesting(async () => "host");
+  const { editor, getRenderRequests } = createEditor();
+  typeKeys(editor, ["o", "n", "e", "\x1b", '"', "+"]);
+  const before = getRenderRequests();
+  typeKeys(editor, ["p"]);
+  await new Promise((resolve) => setTimeout(resolve, 0));
+
+  expect(editor.getText()).toBe("onehost");
+  expect(getRenderRequests()).toBeGreaterThan(before);
+});
+
 test("clipboard paste keeps the mirror's linewise type when host text is the prompt's own copy", async () => {
   setClipboardTextReaderForTesting(async () => "one");
   const { editor } = createEditor();

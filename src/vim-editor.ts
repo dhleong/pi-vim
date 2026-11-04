@@ -628,6 +628,7 @@ export class VimEditor extends CustomEditor {
   private copyClipboard(text: string): void {
     void copyToClipboard(text).catch(() => {
       this.addRuntimeMessage({ kind: "error", text: "Clipboard copy failed" });
+      this.tui.requestRender();
     });
   }
 
@@ -649,7 +650,9 @@ export class VimEditor extends CustomEditor {
           return;
         }
         this.addRuntimeMessage({ kind: "error", text: "Clipboard paste failed" });
-      });
+      })
+      // The read settles after input handling, so no keypress-driven render follows.
+      .finally(() => this.tui.requestRender());
   }
 
   private pasteClipboardRegister(
