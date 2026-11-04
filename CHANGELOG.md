@@ -12,6 +12,11 @@ project uses [Semantic Versioning](https://semver.org/).
   `'clipboard'`: unprefixed yank, delete, and change also copy to the host
   clipboard, and unprefixed `p`/`P` paste from it.
 
+### Fixed
+
+- `"+p`/`"*p` now redraw the prompt as soon as the clipboard text is pasted,
+  instead of on the next keypress.
+
 ### Changed
 
 - Host clipboard paste (`"+p`, `"*p`) keeps a linewise yank linewise when the
