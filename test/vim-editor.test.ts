@@ -147,7 +147,7 @@ function createEditor(
   };
 }
 
-function expectRenderedWidth(lines: string[], width: number) {
+function expectRenderedWidth(lines: readonly string[], width: number) {
   for (const line of lines) expect(visibleWidth(line)).toBeLessThanOrEqual(width);
 }
 
