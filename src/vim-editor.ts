@@ -530,7 +530,8 @@ export class VimEditor extends CustomEditor {
     }
 
     if (this.isShowingAutocomplete()) {
-      return restyleCursorMarker(super.render(width), this.getCurrentCursorStyle());
+      // Pi 1.6 components may return a cached render array; copy before in-place mutation.
+      return restyleCursorMarker([...super.render(width)], this.getCurrentCursorStyle());
     }
 
     if (
@@ -566,7 +567,8 @@ export class VimEditor extends CustomEditor {
       });
     }
 
-    return restyleCursorMarker(super.render(width), this.getCurrentCursorStyle());
+    // Pi 1.6 components may return a cached render array; copy before in-place mutation.
+    return restyleCursorMarker([...super.render(width)], this.getCurrentCursorStyle());
   }
 
   private applyEffects(effects: ModalEffect[]): void {
