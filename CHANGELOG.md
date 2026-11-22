@@ -6,6 +6,17 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Bumped `@earendil-works/pi-coding-agent` and `@earendil-works/pi-tui`
+  dev dependencies to `^1.6.0`.
+
+### Fixed
+
+- Copied Pi's editor render output before in-place mutation, honoring
+  Pi 1.6's read-only render contract for extension components (upstream
+  caching can now return the same array while content is unchanged).
+
 ## [1.0.3] - 2026-10-27
 
 ### Fixed
